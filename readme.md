@@ -1,25 +1,27 @@
+# Set up
+Requirements
+- Deno
+- Docker
+- Terraform (to set up infra)
+
+Steps:
+1. Create deno backend
+2. Create dockerfile and run deno in docker container locally
+3. Use terraform to create infra 
+4. Use github actions
+
+# Terraform
+1. Ensure you have `secrets.tfvars`
+
+```
+// secrets.tfvar
+do_token = ""
+github_token = ""
+ssh_key = ""
+```
+2. `terraform apply -var-file=secrets.tfvars`
+
 # Deployment
-## Deploy to heroku
+## Deploy 
 
-1. Add procfile
-```
-# Procfile
-web: deno run --allow-net=:${PORT} --cached-only server.ts --port=${PORT}
-```
-
-2. Set up Git repo
-```
-git init
-git add .
-git commit -m "First commit"
-```
-
-3. In the terminal, run:
-```
-heroku create ry-deno
-heroku buildpacks:set https://github.com/chibat/heroku-buildpack-deno.git -a ry-deno
-git remote add heroku https://git.heroku.com/ry-deno.git
-git push heroku master
-```
-
-Go to https://ry-deno.herokuapp.com/todos
+Run Deno in docker container
