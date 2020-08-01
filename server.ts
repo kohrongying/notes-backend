@@ -5,7 +5,7 @@ import * as flags from "https://deno.land/std/flags/mod.ts";
 import todos from "./stub.ts";
 
 const {args} = Deno;
-const DEFAULT_PORT = 8080;
+const DEFAULT_PORT = 8000;
 const argPort = flags.parse(args).port;
 const port = argPort ? Number(argPort) : DEFAULT_PORT;
 
