@@ -1,4 +1,4 @@
-name: Publish Docker image
+name: Publish Docker image (Master)
 on:
   push:
     branches:
@@ -21,3 +21,14 @@ jobs:
           registry: docker.pkg.github.com
           repository: kohrongying/notes-backend/notes-backend
           tag_with_ref: true
+  update_server_image:
+    name: Remote SSH to pull updated image
+    uses: JimCronqvist/action-ssh@master
+    with:
+      hosts: 'root@128.199.177.233'
+      privateKey: ${{ secrets.PRIVATE_KEY }}
+      command: |
+        sudo docker pull docker.pkg.github.com/kohrongying/notes-backend/notes-backend:latest
+        docker stop $(docker ps -aq)
+        docker run -d -p 8000:8000 docker.pkg.github.com/kohrongying/notes-backend/notes-backend:latest
+

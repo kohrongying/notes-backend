@@ -16,10 +16,13 @@ app.use(router.routes());
 app.use(router.allowedMethods());
 
 
-router.get('/todos', ({response}: {response:any})=>{
+router.get('/todos', ({response}: {response:any}) => {
     response.body = todos;
 });
 
+router.get('/hello', ({response}: {response:any}) => {
+  response.body = todos;
+});
 console.log(`Server is running on port ${port}`)
 
 await app.listen({ port });
