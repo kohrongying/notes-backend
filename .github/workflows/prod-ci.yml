@@ -23,12 +23,15 @@ jobs:
           tag_with_ref: true
   update_server_image:
     name: Remote SSH to pull updated image
-    uses: JimCronqvist/action-ssh@master
-    with:
-      hosts: 'root@128.199.177.233'
-      privateKey: ${{ secrets.PRIVATE_KEY }}
-      command: |
-        sudo docker pull docker.pkg.github.com/kohrongying/notes-backend/notes-backend:latest
-        docker stop $(docker ps -aq)
-        docker run -d -p 8000:8000 docker.pkg.github.com/kohrongying/notes-backend/notes-backend:latest
+    runs-on: ubuntu-latest
+    steps:
+      - name: Remote SSH
+        uses: JimCronqvist/action-ssh@master
+        with:
+          hosts: 'root@128.199.177.233'
+          privateKey: ${{ secrets.PRIVATE_KEY }}
+          command: |
+            sudo docker pull docker.pkg.github.com/kohrongying/notes-backend/notes-backend:latest
+            docker stop $(docker ps -aq)
+            docker run -d -p 8000:8000 docker.pkg.github.com/kohrongying/notes-backend/notes-backend:latest
 
