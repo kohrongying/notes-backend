@@ -23,6 +23,10 @@ router.get('/todos', ({response}: {response:any}) => {
     response.body = todos;
 });
 
+router.get('/2', ({response}: {response:any}) => {
+  response.body = todos;
+});
+
 console.log(`Server is running on port ${port}`)
 
 await app.listen({ port });
