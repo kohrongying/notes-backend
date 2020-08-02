@@ -22,6 +22,7 @@ jobs:
           repository: kohrongying/notes-backend/notes-backend
           tag_with_ref: true
   update_server_image:
+    needs: push_to_registry
     name: Remote SSH to pull updated image
     runs-on: ubuntu-latest
     steps:
@@ -31,7 +32,6 @@ jobs:
           hosts: ${{ secrets.STAGING_HOST }}
           privateKey: ${{ secrets.PRIVATE_KEY }}
           command: |
-            sudo docker pull docker.pkg.github.com/kohrongying/notes-backend/notes-backend:latest
-            docker stop $(docker ps -aq)
+            docker stop $(docker ps -aq) && docker rm $(docker ps -aq) && docker rmi $(docker images -aq)
+            docker pull docker.pkg.github.com/kohrongying/notes-backend/notes-backend:latest
             docker run -d -p 80:8000 docker.pkg.github.com/kohrongying/notes-backend/notes-backend:latest
-
