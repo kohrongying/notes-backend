@@ -1,7 +1,7 @@
 import { v4 } from "https://deno.land/std/uuid/mod.ts";
+import { Todo } from "./types.ts"
 
-
-let todos = [
+let todos: Todo[] = [
   {
     id: v4.generate(),
     todo: 'Eat Breakfast',

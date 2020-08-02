@@ -1,32 +1,18 @@
 import { Application } from 'https://deno.land/x/oak/mod.ts'
-import { Router } from 'https://deno.land/x/oak/mod.ts'
-import * as flags from "https://deno.land/std/flags/mod.ts";
+import router from "./routes.ts"
 
-import todos from "./stub.ts";
-
-const {args} = Deno;
-const DEFAULT_PORT = 8000;
-const argPort = flags.parse(args).port;
-const port = argPort ? Number(argPort) : DEFAULT_PORT;
+const port = 8000;
 
 const app = new Application();
-const router = new Router();
+
 
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-router.get('/', ({response}: {response:any}) => {
-  response.body = 'hello world';
-});
-
-router.get('/todos', ({response}: {response:any}) => {
-    response.body = todos;
-});
-
-router.get('/2', ({response}: {response:any}) => {
-  response.body = todos;
-});
-
 console.log(`Server is running on port ${port}`)
 
-await app.listen({ port });
+if (import.meta.main) {
+  await app.listen({ port: 3000 });
+}
+
+export { app }
