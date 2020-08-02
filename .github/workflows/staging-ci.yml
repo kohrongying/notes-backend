@@ -1,11 +1,11 @@
-name: Publish Docker image (Master)
+name: Deploy to staging
 on:
   push:
     branches:
-      - master
+      - staging
   pull_request:
     branches: 
-      - master
+      - staging
 jobs:
   push_to_registry:
     name: Push Docker image to GitHub Packages
@@ -20,7 +20,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
           repository: kohrongying/notes-backend/notes-backend
-          tag_with_ref: true
+          tags: staging
   update_server_image:
     needs: push_to_registry
     name: Remote SSH to pull updated image
@@ -33,5 +33,5 @@ jobs:
           privateKey: ${{ secrets.PRIVATE_KEY }}
           command: |
             docker stop $(docker ps -aq) && docker rm $(docker ps -aq) && docker rmi $(docker images -aq)
-            docker pull docker.pkg.github.com/kohrongying/notes-backend/notes-backend:latest
-            docker run -d -p 80:8000 docker.pkg.github.com/kohrongying/notes-backend/notes-backend:latest
+            docker pull docker.pkg.github.com/kohrongying/notes-backend/notes-backend:staging
+            docker run -d -p 80:8000 docker.pkg.github.com/kohrongying/notes-backend/notes-backend:staging
