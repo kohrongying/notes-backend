@@ -42,7 +42,7 @@ A server with some pre-configured configurations
 ## CI/CD with Docker and Github Actions
 In layman terms of the github workflow
 
-#### Triggered by: On push to master or PR to master
+#### Triggered by: On commit / PR
 1. Job #1: push_to_registry
 - Checkout the repository
 - Build the app using the `Dockerfile`
@@ -53,3 +53,9 @@ In layman terms of the github workflow
 - Pull latest image 
 - Stop current container and restart it in background
 
+Go to Settings > Secrets and add the following secrets: 
+1. `PRIVATE_KEY`
+2. `PROD_HOST`
+3. `STAGING_HOST`
+
+Where the host follows `<username@<ip-address>`
