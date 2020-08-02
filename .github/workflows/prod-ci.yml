@@ -28,7 +28,7 @@ jobs:
       - name: Remote SSH
         uses: JimCronqvist/action-ssh@master
         with:
-          hosts: 'root@128.199.177.233'
+          hosts: ${{ secrets.STAGING_HOST }}
           privateKey: ${{ secrets.PRIVATE_KEY }}
           command: |
             sudo docker pull docker.pkg.github.com/kohrongying/notes-backend/notes-backend:latest
