@@ -1,3 +1,5 @@
+![Deploy to prod](https://github.com/kohrongying/notes-backend/workflows/Deploy%20to%20prod/badge.svg) ![Deploy to staging](https://github.com/kohrongying/notes-backend/workflows/Deploy%20to%20staging/badge.svg) ![Create release](https://github.com/kohrongying/notes-backend/workflows/Create%20release/badge.svg)
+
 # Set up
 Requirements
 - Deno
