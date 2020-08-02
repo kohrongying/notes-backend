@@ -19,12 +19,9 @@ resource "digitalocean_droplet" "backend_staging" {
   user_data = <<-EOF
               #!/bin/bash
               echo ${var.public_key} >> ~/.ssh/authorized_keys
-              echo "deb [trusted=yes] https://apt.fury.io/caddy/ /" | sudo tee -a /etc/apt/sources.list.d/caddy-fury.list
-              sudo apt update
-              sudo apt install caddy
               docker login https://docker.pkg.github.com -u kohrongying -p ${var.github_token}
-              sudo docker pull docker.pkg.github.com/kohrongying/notes-backend/notes-backend:latest
-              docker run -d -p 8000:80 docker.pkg.github.com/kohrongying/notes-backend/notes-backend:latest 
+              sudo docker pull docker.pkg.github.com/kohrongying/notes-backend/notes-backend:v0.1
+              docker run -d -p 80:8000 docker.pkg.github.com/kohrongying/notes-backend/notes-backend:v0.1 
               EOF
 }
 

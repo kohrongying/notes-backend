@@ -33,5 +33,5 @@ jobs:
           command: |
             sudo docker pull docker.pkg.github.com/kohrongying/notes-backend/notes-backend:latest
             docker stop $(docker ps -aq)
-            docker run -d -p 8000:8000 docker.pkg.github.com/kohrongying/notes-backend/notes-backend:latest
+            docker run -d -p 80:8000 docker.pkg.github.com/kohrongying/notes-backend/notes-backend:latest
 

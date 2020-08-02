@@ -37,7 +37,6 @@ terraform apply -var-file=secrets.tfvars`
 A server with some pre-configured configurations
 - Logging into the docker registry with the github token
 - Adding the public key into `authorized_keys`. This key is the one where github actions will use to remote access
-- Installed Caddy
 
 # Deployment
 ## CI/CD with Docker and Github Actions
