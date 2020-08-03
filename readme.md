@@ -1,6 +1,6 @@
 # Set up
 Requirements
-- Deno
+- Deno v1.2 (at least)
 - Docker
 - Terraform (to set up infra)
 
@@ -59,3 +59,16 @@ Go to Settings > Secrets and add the following secrets:
 3. `STAGING_HOST`
 
 Where the host follows `<username@<ip-address>`
+
+# Development
+```
+deno run --allow-net server.ts
+OR 
+docker build . -t web
+docker run -p 8000:8000 web:latest
+```
+
+# Testing
+```
+deno test --allow-net
+```

@@ -12,7 +12,7 @@ app.use(router.allowedMethods());
 console.log(`Server is running on port ${port}`)
 
 if (import.meta.main) {
-  await app.listen({ port: 3000 });
-}
+  await app.listen({ port });
+} 
 
 export { app }
