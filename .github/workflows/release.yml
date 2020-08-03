@@ -2,9 +2,6 @@ name: Create release
 on:
   release:
     types: [published]
-  push:
-    tags: 
-      - '*'
 
 jobs:
   run_tests:
