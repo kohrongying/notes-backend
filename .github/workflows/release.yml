@@ -7,7 +7,22 @@ on:
       - '*'
 
 jobs:
+  run_tests:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      - name: Use deno version
+        uses: denolib/setup-deno@master
+        with:
+          deno-version: 1.2.0
+      - name: Lint deno module
+        run: deno fmt --check
+      - name: Test deno module
+        run: deno test --allow-net
   push_to_registry:
+    needs: run_tests
     name: Push Docker image to GitHub Packages
     runs-on: ubuntu-latest
     steps:

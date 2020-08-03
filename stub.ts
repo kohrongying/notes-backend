@@ -1,27 +1,27 @@
 import { v4 } from "https://deno.land/std/uuid/mod.ts";
+import { Todo } from "./types.ts";
 
-
-let todos = [
+let todos: Todo[] = [
   {
     id: v4.generate(),
-    todo: 'Eat Breakfast',
+    todo: "Eat Breakfast",
     isCompleted: true,
   },
   {
     id: v4.generate(),
-    todo: 'Eat Lunch',
+    todo: "Eat Lunch",
     isCompleted: false,
   },
   {
     id: v4.generate(),
-    todo: 'Eat Dinner',
+    todo: "Eat Dinner",
     isCompleted: true,
   },
   {
     id: v4.generate(),
-    todo: 'Do dishes',
+    todo: "Do dishes",
     isCompleted: false,
-  }
+  },
 ];
 
 export default todos;
