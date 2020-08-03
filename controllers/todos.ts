@@ -1,28 +1,30 @@
 import todos from "../stub.ts";
-import { Todo } from "../types.ts"
+import { Todo } from "../types.ts";
 
-const getTodos = ({ response }: { response: any}) => {
+const getTodos = ({ response }: { response: any }) => {
   response.body = {
     success: true,
-    data: todos
-  }
-}
+    data: todos,
+  };
+};
 
-const getTodo = ({ params, response }: { params: { id: string }, response: any }) => {
-  const todo: Todo | undefined = todos.find(p => p.id === params.id)
+const getTodo = (
+  { params, response }: { params: { id: string }; response: any },
+) => {
+  const todo: Todo | undefined = todos.find((p) => p.id === params.id);
 
   if (todo) {
-      response.status = 200
-      response.body = {
-          success: true,
-          data: todo
-      }
+    response.status = 200;
+    response.body = {
+      success: true,
+      data: todo,
+    };
   } else {
-      response.status = 404
-      response.body = {
-          success: false,
-          msg: 'No todo found'
-      }
+    response.status = 404;
+    response.body = {
+      success: false,
+      msg: "No todo found",
+    };
   }
-}
+};
 export { getTodos, getTodo };
